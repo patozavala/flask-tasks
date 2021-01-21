@@ -1,0 +1,10 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% macro render_task(task, delete_form, update_form) %}
+    <li class="list-group-item">
+        <span class="badge">{{ task.to_dict().done }}</span>
+        Description: {{ task.to_dict().description }}
+        {{ wtf.quick_form(delete_form, action=url_for('delete', task_id=task.id)) }}
+        {{ wtf.quick_form(update_form, action=url_for('update', task_id=task.id, done= task.to_dict().done )) }}
+    </li>
+{% endmacro %}
